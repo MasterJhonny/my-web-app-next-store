@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Button } from "@/components/button";
 import { Sun, Heart } from "lucide-react";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -31,7 +32,7 @@ export default function RootLayout({ children }) {
               <div className="flex items-center justify-between">
                 {/* Logo and Navigation */}
                 <div className="flex items-center space-x-8">
-                  <div className="flex items-center space-x-2">
+                  <Link href="/" className="flex items-center space-x-2">
                     <div
                       className="w-6 h-6 bg-white"
                       style={{
@@ -39,39 +40,39 @@ export default function RootLayout({ children }) {
                       }}
                     ></div>
                     <span className="text-xl font-bold">TIENDA</span>
-                  </div>
+                  </Link>
 
                   <nav className="hidden md:flex items-center space-x-6">
-                    <a
-                      href="#"
+                    <Link
+                      href="/"
                       className="text-gray-300 hover:text-white transition-colors"
                     >
                       Home
-                    </a>
-                    <a
-                      href="#"
+                    </Link>
+                    <Link
+                      href="/new"
                       className="text-gray-300 hover:text-white transition-colors"
                     >
-                      Productos
-                    </a>
-                    <a
+                      Nuevo Producto
+                    </Link>
+                    <Link
                       href="#"
                       className="text-gray-300 hover:text-white transition-colors"
                     >
                       Proveedores
-                    </a>
-                    <a
+                    </Link>
+                    <Link
                       href="#"
                       className="text-gray-300 hover:text-white transition-colors"
                     >
                       Blog
-                    </a>
-                    <a
+                    </Link>
+                    <Link
                       href="#"
                       className="text-gray-300 hover:text-white transition-colors"
                     >
                       About
-                    </a>
+                    </Link>
                   </nav>
                 </div>
 

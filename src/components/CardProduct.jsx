@@ -17,6 +17,7 @@ const CardProduct = ({ product }) => {
             width={200}
             height={200}
             className="w-full h-full object-contain"
+            priority={true}
           />
         </div>
       </div>

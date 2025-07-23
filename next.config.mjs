@@ -15,6 +15,7 @@ const nextConfig = {
       new URL("https://www.fidalga.com/cdn/**"),
       new URL("https://spea.pt/**"),
       new URL("https://d1v72zbjsz4agk.cloudfront.net/**"),
+      new URL("https://res.cloudinary.com/dnumlnadg/image/upload/**"),
     ],
   },
 };

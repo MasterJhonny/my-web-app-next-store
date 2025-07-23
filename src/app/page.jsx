@@ -1,7 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
+import { Triangle } from "react-loader-spinner";
 import { Search } from "lucide-react";
 import { Input } from "@/components/input";
+import AddButton from "@/components/AddButton";
 import CardProduct from "@/components/CardProduct";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -28,7 +30,7 @@ export default function Home() {
       const productsData = await LoadProducts();
 
       setIsLoading(false);
-      console.log("🚀 ~ PageProducts ~ productsData:", productsData);
+      // console.log("🚀 ~ PageProducts ~ productsData:", productsData);
       setProducts(productsData);
     };
 
@@ -56,7 +58,17 @@ export default function Home() {
         </div>
       </div>
       {isLoading && (
-        <div className="text-center text-gray-400">Cargando productos...</div>
+        <div className="flex justify-center text-center text-gray-400">
+          <Triangle
+            visible={true}
+            height="90"
+            width="90"
+            color="#9929EA"
+            ariaLabel="triangle-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+          />
+        </div>
       )}
       {/* Products Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -64,6 +76,7 @@ export default function Home() {
           <CardProduct key={product.detail} product={product} />
         ))}
       </div>
+      <AddButton href="/new" />
     </main>
   );
 }
