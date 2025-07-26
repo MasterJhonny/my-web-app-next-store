@@ -1,10 +1,12 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Triangle } from "react-loader-spinner";
 import { Search } from "lucide-react";
 import { Input } from "@/components/input";
 import AddButton from "@/components/AddButton";
 import CardProduct from "@/components/CardProduct";
+import { ProductsContext } from "@/context/ProductsContext";
+import { ParamsContext } from "@/context/ParamsContext";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -15,7 +17,8 @@ const LoadProducts = async () => {
 };
 
 export default function Home() {
-  const [products, setProducts] = useState([]);
+  const { products, setProducts } = useContext(ProductsContext);
+  const { params, setParams } = useContext(ParamsContext);
   const [isLoading, setIsLoading] = useState(true);
 
   // state of search
@@ -27,13 +30,15 @@ export default function Home() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const productsData = await LoadProducts();
-
+      // Asegúrate de que los parámetros de consulta están disponibles
+      if (params === "/") {
+        console.log("🚀 ~ useEffect ~ params:", params);
+        const productsData = await LoadProducts();
+        // console.log("🚀 ~ PageProducts ~ productsData:", productsData);
+        setProducts(productsData);
+      }
       setIsLoading(false);
-      // console.log("🚀 ~ PageProducts ~ productsData:", productsData);
-      setProducts(productsData);
     };
-
     fetchProducts();
   }, []);
 

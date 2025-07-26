@@ -1,13 +1,16 @@
 "use client";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/button";
 import { Heart } from "lucide-react";
+import { ParamsContext } from "@/context/ParamsContext";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const ProductForm = () => {
   const router = useRouter();
+  const { setParams } = useContext(ParamsContext);
+
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     detail: "",
@@ -65,6 +68,7 @@ const ProductForm = () => {
       });
 
       if (response.ok) {
+        setParams("/"); // Reset params to home
         setIsLoading(false);
         alert("Producto registrado exitosamente");
         setFormData({
